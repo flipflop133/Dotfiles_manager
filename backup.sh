@@ -28,7 +28,7 @@ while IFS= read -r line
 do
     IFS=''
     directories+=($HOME/$line)
-    IFS= read -r line
+    IFS=$DefaultIFS
 done < "$input"
 
 # clean old dotfiles
