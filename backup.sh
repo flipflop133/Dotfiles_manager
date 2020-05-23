@@ -31,45 +31,17 @@ do
     IFS=$DefaultIFS
 done < "$input"
 
-# clean old dotfiles
-cleaner(){
-    echo ''
-    read -r -p "Clean old dotfiles(those in the cloned repo)? [y/N]" response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-    then  
-        echo -e "\e[96mThe following directory will be deleted:\e[0m"
-        echo "$dot/dotfiles"
-        read -r -p "Do you want to proceed? [y/N]" response
-        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-        then 
-            clean="true"
-            echo -e "\e[96mOld dotfiles will be deleted.\e[0m"
-        else 
-            echo -e "\e[96mSkipping cleaning.\e[0m"
-        fi
-    else
-        echo -e "\e[96mSkipping cleaning.\e[0m" 
-    fi
-    echo ''
-}
-
 # backup files
 backup(){
     # Set IFS to '' so spaces are not ignored
 	IFS=''
     # copy dot files to backup directory
     echo -e "\e[96mBackuping the following dotfiles:\e[0m"
-    # clean old dotfiles
-    if [ "$clean" = "true" ]
-    then rm -rf $dot/dotfiles
-    fi
     # backup new dotfiles
-    mkdir $dot/dotfiles
-
     for dir in ${directories[@]}; do
         echo "$dir"
         # copy the dotfile
-        cp -R -f "$dir" $dot/dotfiles
+        cp -R -f "$dir" $dot
     done
     echo -e "\e[96mDotfiles backup done!\e[0m"
     # Reset IFS to its default value
@@ -93,15 +65,17 @@ backup_app(){
 # push files to the user repo
 user_repo=$(git config --get remote.origin.url)
 git(){
-    echo -e "\e[96mDo you want to push the backup to the following ${GIT} repo?\e[0m"
+    GIT=`which git`
+    echo -e "\e[96mDo you want to push the backup to the following repo?\e[0m"
     echo "$user_repo"
     read -r -p "[y/N]" response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
     then
-        echo -e "\e[96mPushing files to ${GIT}.\e[0m"
-        GIT=`which git`
-        ${GIT} add dotfiles appList.txt
-        ${GIT} commit -m "update dotfiles"
+        echo -e "\e[96mPushing files to your repo.\e[0m"  
+        ${GIT} add .
+        ${GIT} reset backup.sh
+        read -r -p "Commit message:" response
+        ${GIT} commit -m "$response"
         ${GIT} push
     fi
     echo ''
