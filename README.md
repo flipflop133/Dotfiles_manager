@@ -13,5 +13,6 @@
 ###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (So no need to add your home path.)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run the script in your terminal:
 ###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ ./backup.sh
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To push the dotfiles to your dotfile repo, copy backup.sh and dotfiles_list.txt to your repo directory.
 ------
 ### Feel free to do pull requests ;)
