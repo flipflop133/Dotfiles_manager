@@ -16,3 +16,5 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To push the dotfiles to your dotfile repo, copy backup.sh and dotfiles_list.txt to your repo directory.
 ------
 ### Feel free to do pull requests ;)
+------
+### Thanks to [Mortezadadgar](https://github.com/mortezadadgar) for his help and feedbacks on this script!
