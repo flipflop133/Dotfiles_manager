@@ -8,8 +8,10 @@
 ------
 ## How to use:
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simply put your dotfiles path in "dotfiles_list.txt" as follow:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg: "/home/yourusername/.config/magicdotfile"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    -> ".config/magicdotfile"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (So no need to add your home path.)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eg: "/home/yourusername/.config/magicdotfile"
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    -> ".config/magicdotfile"
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (So no need to add your home path.)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run the script in your terminal:
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ ./backup.sh
 ------
 ### Feel free to do pull requests ;)
