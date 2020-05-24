@@ -12,6 +12,7 @@
 
 # Save default IFS value
 DefaultIFS=$IFS
+dot=$(pwd)
 
 # Backup utility
 backup_utility(){
@@ -21,7 +22,6 @@ backup_utility(){
     echo ''
     # define backup directory
     echo -e "\e[96mBackup directory:\e[0m"
-    dot=$(pwd)
     echo "$dot"
 
     # dot files directories
@@ -42,10 +42,13 @@ backup_utility(){
         echo -e "\e[96mBackuping the following dotfiles:\e[0m"
         # backup new dotfiles
         for dir in ${directories[@]}; do
-            echo "$dir"
-            mkdir -p "$dot/$dir"
             # copy the dotfile
-            cp -R -f "$HOME/$dir" $dot/$dir
+            echo "$dir"
+            cp --parents -r -f "$HOME/$dir" $dot
+            cp -r -f $dot$HOME/. $dot
+            dir_rm=$dot/$HOME/
+            parentdir="$(dirname "$dir_rm")"
+            rm -rf $parentdir
         done
         echo -e "\e[96mDotfiles backup done!\e[0m"
         # Reset IFS to its default value
@@ -77,7 +80,7 @@ backup_utility(){
         then
             echo -e "\e[96mPushing files to your repo.\e[0m"  
             ${GIT} add .
-            ${GIT} reset backup.sh
+            ${GIT} reset dotfiles_manager.sh
             read -r -p "Commit message:" response
             ${GIT} commit -m "$response"
             ${GIT} push
@@ -114,10 +117,8 @@ restore_utility(){
         echo -e "\e[96mRestoring the following dotfiles:\e[0m"
         # restore dotfiles
         for dir in ${directories[@]}; do
-            echo "$HOME/$dir"
-            mkdir -p "$HOME/$dir"
             # copy the dotfile
-            echo "$dot/$dir$HOME/$dir"
+            echo "$dir"
             cp -R -f $dot/$dir "$HOME/$dir"
         done
         echo -e "\e[96mDotfiles restore done!\e[0m"
