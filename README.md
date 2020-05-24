@@ -13,13 +13,13 @@
 ###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    -> ".config/magicdotfile"
 ###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (So no need to add your home path.)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run the script in your terminal:
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ ./backup.sh
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ ./dotfiles_manager.sh
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To push the dotfiles to your dotfile repo, copy backup.sh and dotfiles_list.txt to your repo directory.
 ### Restore:
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clone your dotfile backup repository.
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Put the backup.sh and dotfiles_list.txt files inside your cloned repository.
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run the script in your terminal:
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ ./backup.sh
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ ./dotfiles_manager.sh
 ###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select restore(2) and your are done!
 ------
 ### Feel free to do pull requests ;)
