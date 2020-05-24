@@ -42,10 +42,15 @@ backup(){
         if [[ $dir == *".config"* ]];
         then
             temp_dir=${dir#.*g}
-            mkdir -p "$dot$temp_dir"
+            #mkdir -p "$dot$temp_dir"
             # copy the dotfile
-            cp -R -f "$HOME/$dir" $dot/$temp_dir
-            echo "$HOME$temp_dir"
+            if cp -R -f "$HOME/$dir" $dot$temp_dir ;
+            then :
+            else 
+                mkdir -p "$dot$temp_dir"
+                cp -R -f "$HOME/$dir" $dot$temp_dir
+            fi
+            echo "$HOME/$dir$dot$temp_dir"
         else
             mkdir -p "$dot$dir"
             echo "$dot/$dir"
