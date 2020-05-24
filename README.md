@@ -1,4 +1,4 @@
-# DOTFILES BACKUP UTILITY
+# DOTFILES MANAGER UTILITY
 ------
 ## Features:
 #### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-backup and restore all your dotfiles
