@@ -39,9 +39,20 @@ backup(){
     # backup new dotfiles
     for dir in ${directories[@]}; do
         echo "$dir"
-        mkdir -p "$dot/$dir"
-        # copy the dotfile
-        cp -R -f "$HOME/$dir" $dot/$dir
+        if [[ $dir == *".config"* ]];
+        then
+            temp_dir=${dir#.*g}
+            mkdir -p "$dot$temp_dir"
+            # copy the dotfile
+            cp -R -f "$HOME/$dir" $dot/$temp_dir
+            echo "$HOME$temp_dir"
+        else
+            mkdir -p "$dot$dir"
+            echo "$dot/$dir"
+            # copy the dotfile
+            cp -R -f "$HOME/$dir" $dot/$dir
+            echo "$HOME/$dir"
+        fi
     done
     echo -e "\e[96mDotfiles backup done!\e[0m"
     # Reset IFS to its default value
