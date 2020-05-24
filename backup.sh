@@ -17,9 +17,8 @@ echo -e "\e[96mDOT BACKUP SCRIPT\e[0m"
 echo ''
 # define backup directory
 echo -e "\e[96mBackup directory:\e[0m"
-pwd=$(pwd)
-echo "$pwd/dotfiles"
-dot=$pwd
+dot=$(pwd)
+echo "$dot"
 
 # dot files directories
 directories=()
@@ -27,7 +26,7 @@ input="dotfiles_list.txt"
 while IFS= read -r line
 do
     IFS=''
-    directories+=($HOME/$line)
+    directories+=($line)
     IFS=$DefaultIFS
 done < "$input"
 
@@ -40,8 +39,9 @@ backup(){
     # backup new dotfiles
     for dir in ${directories[@]}; do
         echo "$dir"
+        mkdir -p "$dot/$dir"
         # copy the dotfile
-        cp -R -f "$dir" $dot
+        cp -R -f "$HOME/$dir" $dot/$dir
     done
     echo -e "\e[96mDotfiles backup done!\e[0m"
     # Reset IFS to its default value
@@ -82,7 +82,6 @@ git(){
 }
 
 # execute the functions
-cleaner
 backup
 backup_app
 git
