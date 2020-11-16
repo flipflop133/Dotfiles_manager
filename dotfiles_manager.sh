@@ -119,8 +119,8 @@ restore_utility(){
         for dir in ${directories[@]}; do
             # copy the dotfile
             echo "$dot/$dir $HOME/$dir"
-            if cp -r -f "$dot/$dir/." "$HOME/$dir"; then
-                :
+            if [ -d "$dot/$dir/." ]; then
+                cp -r -f "$dot/$dir/." "$HOME/$dir"
             else
                 cp -r -f "$dot/$dir" "$HOME/$dir"
             fi
