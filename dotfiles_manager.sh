@@ -71,7 +71,7 @@ backup_utility(){
     backup_system(){
         # get system files directories
         system_directories=()
-        input="systemFiles.txt"
+        input="system_files.txt"
         while IFS= read -r line
         do
             IFS=''
@@ -169,7 +169,7 @@ restore_utility(){
     restore_system(){
         # get system files directories
         system_directories=()
-        input="systemFiles.txt"
+        input="system_files.txt"
         while IFS= read -r line
         do
             IFS=''
