@@ -85,12 +85,17 @@ backup_utility(){
 
             # Set IFS to '' so spaces are not ignored
             IFS=''
+            # create .root directory if it doesn't exist 
+            if [ ! -d ".root" ]
+            then
+                mkdir -p ".root"
+            fi
             # copy system file to backup directory
             echo -e "\e[96mBackuping the following system files:\e[0m"
             for dir in ${system_directories[@]}; do
                 # copy the system file 
                 echo "$dir"
-                cp --parents -r -f "$dir" $dot
+                cp --parents -r -f "$dir" $dot/.root/
             done
             echo -e "\e[96mSystem files backup done!\e[0m"
             # Reset IFS to its default value
@@ -186,13 +191,18 @@ restore_utility(){
                 IFS=''
                 # copy system files to their directories
                 echo -e "\e[96mRestoring the following system files:\e[0m"
-                # backup new dotfiles
                 for dir in ${system_directories[@]}; do
                     echo "$dir"
-                    if [ -d "$dot/$dir/." ]; then
-                        cp -r -f "$dot/$dir/." "$dir"
+                    if [ -d "$dot/.root$dir/." ]; then
+                        # copy directory
+                        cp -r -f "$dot/.root$dir/." "$dir"
                     else
-                        cp -r -f "$dot/$dir" "$dir"
+                        #copy file
+                        if [ ! -f "$dir" ]
+                        then
+                            mkdir -p "$dir"
+                        fi
+                        cp -r -f "$dot/.root$dir" "$dir"
                     fi
                 done
                 echo -e "\e[96mSystem files restore done!\e[0m"
