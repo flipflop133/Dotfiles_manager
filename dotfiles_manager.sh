@@ -69,20 +69,20 @@ backup_utility(){
     }
 
     backup_system(){
-        # get system files directories
-        system_directories=()
-        input="system_files.txt"
-        while IFS= read -r line
-        do
-            IFS=''
-            system_directories+=($line)
-            IFS=$DefaultIFS
-        done < "$input"
-
         # backup system files
         read -r -p "Backup system files? [y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then    
+            # get system files directories
+            system_directories=()
+            input="system_files.txt"
+            while IFS= read -r line
+            do
+                IFS=''
+                system_directories+=($line)
+                IFS=$DefaultIFS
+            done < "$input"           
+
             # Set IFS to '' so spaces are not ignored
             IFS=''
             # copy system file to backup directory
@@ -167,20 +167,19 @@ restore_utility(){
     }
     
     restore_system(){
-        # get system files directories
-        system_directories=()
-        input="system_files.txt"
-        while IFS= read -r line
-        do
-            IFS=''
-            system_directories+=($line)
-            IFS=$DefaultIFS
-        done < "$input"
-
         # restore system files
         read -r -p "Restore system files? [y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then    
+            # get system files directories
+            system_directories=()
+            input="system_files.txt"
+            while IFS= read -r line
+            do
+                IFS=''
+                system_directories+=($line)
+                IFS=$DefaultIFS
+            done < "$input"
             if [ $(id -u) -eq 0 ]
             then
                 # Set IFS to '' so spaces are not ignored
