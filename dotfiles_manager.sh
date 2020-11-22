@@ -198,10 +198,6 @@ restore_utility(){
                         cp -r -f "$dot/.root$dir/." "$dir"
                     else
                         #copy file
-                        if [ ! -f "$dir" ]
-                        then
-                            mkdir -p "$dir"
-                        fi
                         cp -r -f "$dot/.root$dir" "$dir"
                     fi
                 done
